@@ -71,3 +71,8 @@ dict ={"a":5, 1:"bcd", "king":"Himalaya"}
 print(dict)
 print(dict[1])
 print(dict["king"])
+print(dict["a"])
+
+# Adding a new key-value pair to the dictionary
+dict["new_key"] = "new_value"
+print(dict)
