@@ -76,3 +76,11 @@ print(dict["a"])
 # Adding a new key-value pair to the dictionary
 dict["new_key"] = "new_value"
 print(dict)
+
+#How to add data to dictionary dynamically or at runtime
+
+dic={}
+dic["name"]="Himalaya"
+dic["age"]=25   
+dic["city"]="Pune"
+print(dic)
