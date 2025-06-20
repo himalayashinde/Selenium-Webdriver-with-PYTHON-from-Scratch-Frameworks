@@ -37,3 +37,4 @@ print(values)
 del values[0]
 print(values)
 
+#Below are the examples of Tuples
