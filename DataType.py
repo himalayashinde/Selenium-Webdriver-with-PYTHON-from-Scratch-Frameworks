@@ -49,8 +49,8 @@ print(values)
 values_tuple = (1, 2, "Hello world", 4, 5)
 print(values_tuple[0])
 
-values_tuple[2]= "hello worlds"
-print(values_tuple)
+# values_tuple[2]= "hello worlds"
+# print(values_tuple)
 
 # Traceback (most recent call last):
 #   File "I:\Coding_journey\Selenium-Webdriver-with-PYTHON-from-Scratch-Frameworks\DataType.py", line 52, in <module>
@@ -59,3 +59,15 @@ print(values_tuple)
 # TypeError: 'tuple' object does not support item assignment
 
 
+#Dictionary
+# A dictionary is a collection of key-value pairs.
+# Each key is unique and maps to a specific value.
+# Dictionaries are defined using curly braces {} and can contain various data types.
+# They are useful for storing data that needs to be accessed by a unique key.
+
+# Below is an example of a dictionary
+dict ={"a":5, 1:"bcd", "king":"Himalaya"}
+
+print(dict)
+print(dict[1])
+print(dict["king"])
