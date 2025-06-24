@@ -22,4 +22,5 @@ print("\nBelow is the example for trim\n")
 print("Original String :",str4)
 print("\nRemove All white spaces from the string", str4.strip())
 print("\nRemove Beginning white spaces from the string", str4.lstrip())
-print("\nRemove Ending white spaces from the string", str4.rstrip())
+print("\nRemove Ending white spaces from  the string", str4.rstrip())
+ 
