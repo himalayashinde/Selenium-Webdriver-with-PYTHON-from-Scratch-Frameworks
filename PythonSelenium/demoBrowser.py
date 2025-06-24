@@ -1,6 +1,5 @@
 import os
 import time
-
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
@@ -17,5 +16,7 @@ driver= webdriver.Chrome(service=service_obj)
 # driver = webdriver.Chrome()
 driver.maximize_window()
 driver.get("https://rahulshettyacademy.com/locatorspractice/")
+print(driver.title)
+print(driver.current_url)
 
 time.sleep(5)
