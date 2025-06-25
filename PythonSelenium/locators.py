@@ -20,7 +20,7 @@ print(driver.title)
 print(driver.current_url)
 
 # Xpath used below for reference
-driver.find_element(By.XPATH,"(//input[@name='name'])[1]").send_keys("Himalaya Shinde")
+driver.find_element(By.CSS_SELECTOR,"input[name='name']").send_keys("Himalaya Shinde")
 
 # Name tag
 driver.find_element(By.NAME,"email").send_keys("himalayashinde@gmail.com")
@@ -29,7 +29,14 @@ driver.find_element(By.NAME,"email").send_keys("himalayashinde@gmail.com")
 driver.find_element(By.ID,"exampleInputPassword1").send_keys("Himalaya@1234")
 driver.find_element(By.ID,"exampleCheck1").click()
 
+# Xpath -->  //tagname[@attribute='value']
+# Css Selector --> tagname[@attribute='value']
 
+driver.find_element(By.XPATH,"//input[@type='submit']").click()
+message= driver.find_element(By.CLASS_NAME,"alert-success").text
+print(message)
+
+assert "Success" in message
 
 
 
