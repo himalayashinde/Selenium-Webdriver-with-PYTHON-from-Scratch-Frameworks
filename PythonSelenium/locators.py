@@ -30,14 +30,16 @@ driver.find_element(By.ID,"exampleInputPassword1").send_keys("Himalaya@1234")
 driver.find_element(By.ID,"exampleCheck1").click()
 
 # Xpath -->  //tagname[@attribute='value']
-# Css Selector --> tagname[@attribute='value']
+# Css Selector --> tagname[@attribute='value'], #id, .classname
 
+driver.find_element(By.CSS_SELECTOR,"#inlineRadio1").click()
 driver.find_element(By.XPATH,"//input[@type='submit']").click()
 message= driver.find_element(By.CLASS_NAME,"alert-success").text
 print(message)
 
 assert "Success" in message
 
+driver.find_element(By.XPATH,"(//input[@name='name'])[2]").send_keys("Hello World...!!")
 
 
 time.sleep(5)
