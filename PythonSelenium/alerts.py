@@ -28,3 +28,5 @@ alertText = alert.text
 print(alertText)
 assert name in alertText
 alert.accept()
+
+# need to understand in depth for python automation
