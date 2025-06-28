@@ -4,6 +4,8 @@ import time
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
 
 base_dir = os.path.dirname(__file__)
 print(base_dir)
@@ -14,7 +16,7 @@ driver_path = os.path.join(base_dir, "chromedriver-win64", "chromedriver.exe")
 service_obj = Service(driver_path)
 driver= webdriver.Chrome(service=service_obj)
 
-driver.implicitly_wait(5)
+driver.implicitly_wait(2)
 # driver = webdriver.Chrome()
 driver.maximize_window()
 
@@ -42,9 +44,15 @@ driver.find_element(By.CSS_SELECTOR,".promoCode").send_keys("rahulshettyacademy"
 driver.find_element(By.CSS_SELECTOR,".promoBtn").click()
 
 # time.sleep(5)
+# promoInfoElement = By.CLASS_NAME,"promoInfo"
+
+wait = WebDriverWait(driver,10)
+
+wait.until(expected_conditions.presence_of_element_located((By.CLASS_NAME,"promoInfo")))
 
 promoInfo = driver.find_element(By.CLASS_NAME,"promoInfo").text
 print(promoInfo)
+
 
 assert promoInfo == "Code applied ..!"
 
