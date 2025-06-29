@@ -38,6 +38,17 @@ driver.find_element(By.CSS_SELECTOR,"img[alt='Cart']").click()
 driver.find_element(By.XPATH," //button[text()='PROCEED TO CHECKOUT']").click()
 
 # time.sleep(2)
+prices = driver.find_elements(By.CSS_SELECTOR,"tr td:nth-child(5) p")
+sum =0
+
+for price in prices:
+    sum = sum + int(price.text)
+
+print(sum)
+
+totalAmount= int(driver.find_element(By.CSS_SELECTOR,".totAmt").text)
+
+assert sum == totalAmount
 
 driver.find_element(By.CSS_SELECTOR,".promoCode").send_keys("rahulshettyacademy")
 
@@ -52,7 +63,6 @@ wait.until(expected_conditions.presence_of_element_located((By.CLASS_NAME,"promo
 
 promoInfo = driver.find_element(By.CLASS_NAME,"promoInfo").text
 print(promoInfo)
-
 
 assert promoInfo == "Code applied ..!"
 
