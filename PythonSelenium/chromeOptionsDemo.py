@@ -1,0 +1,32 @@
+import os
+import time
+
+from selenium import webdriver
+from selenium.webdriver import ActionChains
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions
+from selenium.webdriver.support.wait import WebDriverWait
+
+base_dir = os.path.dirname(__file__)
+print(base_dir)
+
+# Construct path to the ChromeDriver inside the resources folder
+driver_path = os.path.join(base_dir, "chromedriver-win64", "chromedriver.exe")
+
+chrome_options = webdriver.ChromeOptions()
+chrome_options.add_argument("--start-maximized")
+chrome_options.add_argument("headless")
+chrome_options.add_argument("--ignore-certificate-errors")
+
+
+service_obj = Service(driver_path)
+driver= webdriver.Chrome(service=service_obj,options= chrome_options)
+
+driver.implicitly_wait(5)
+# driver = webdriver.Chrome()
+driver.maximize_window()
+
+driver.get("https://the-internet.herokuapp.com/iframe")
+
+print(driver.title)
