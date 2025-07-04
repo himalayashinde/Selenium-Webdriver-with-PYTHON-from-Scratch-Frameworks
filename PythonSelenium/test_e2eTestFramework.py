@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from pageObjects.login import LoginPage
+
 
 def test_e2e(browserInstance):
     driver = browserInstance
@@ -14,9 +16,11 @@ def test_e2e(browserInstance):
 
     actions = ActionChains(driver)
     driver.get("https://rahulshettyacademy.com/loginpagePractise/")
-    driver.find_element(By.ID,"username").send_keys("rahulshettyacademy")
-    driver.find_element(By.ID, "password").send_keys("learning")
-    driver.find_element(By.ID,"signInBtn").click()
+
+    loginPage = LoginPage()
+
+    loginPage.login()
+
     driver.find_element(By.LINK_TEXT, "Shop").click()
 
     # //button[text()="Add "]/parent::div/parent::div/parent::app-card//h4/a[text()='Blackberry']
