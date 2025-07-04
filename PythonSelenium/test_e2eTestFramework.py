@@ -1,43 +1,31 @@
+import os.path
+import sys
 import time
-
 from selenium import webdriver
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
-
 from pageObjects.login import LoginPage
+from pageObjects.shop import ShopPage
 
 
 def test_e2e(browserInstance):
     driver = browserInstance
 
     driver.maximize_window()
+    actions= ActionChains(driver)
 
-    actions = ActionChains(driver)
     driver.get("https://rahulshettyacademy.com/loginpagePractise/")
 
-    loginPage = LoginPage()
+    loginPage = LoginPage(driver)
 
-    loginPage.login()
+    shop_page=loginPage.login()
 
-    driver.find_element(By.LINK_TEXT, "Shop").click()
+    shop_page.add_product_to_cart("Blackberry")
 
-    # //button[text()="Add "]/parent::div/parent::div/parent::app-card//h4/a[text()='Blackberry']
-    add_button = (By.XPATH, "//h4/a[text()='Blackberry']/ancestor::app-card//button[text()='Add ']")
-    element = driver.find_element(*add_button)
-    # Ensure it's in viewport for Firefox
-    driver.execute_script("arguments[0].scrollIntoView(true);", element)
-
-    actions.move_to_element(driver.find_element(*add_button)).perform()
-
-    driver.find_element(*add_button).click()
-
-    checkout = driver.find_element(By.PARTIAL_LINK_TEXT, "Checkout")
-    # element1=driver.find_element(*checkout)
-    driver.execute_script("arguments[0].scrollIntoView(true);", checkout)
-    actions.move_to_element(checkout).click().perform()
-    # checkout.click()
+    shop_page.goToCart()
 
     checkoutButton = driver.find_element(By.XPATH, "//button[contains(text(), 'Checkout')]")
     driver.execute_script("arguments[0].scrollIntoView(true);", checkoutButton)
