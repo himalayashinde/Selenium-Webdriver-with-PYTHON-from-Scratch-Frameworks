@@ -27,3 +27,4 @@ def test_e2e(browserInstance):
     checkout_confirmation.checkout()
     checkout_confirmation.enter_delivery_address("Ind")
     checkout_confirmation.validate_order()
+    # need to learn more on it

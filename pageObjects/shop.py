@@ -1,6 +1,8 @@
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
+from pageObjects.checkout_confirmation import Checkout_Confirmation
+
 
 class ShopPage:
 
@@ -30,4 +32,6 @@ class ShopPage:
         self.driver.execute_script("arguments[0].scrollIntoView(true);", checkout)
         self.actions.move_to_element(checkout).click().perform()
         # checkout.click()
+        checkout_confirmation = Checkout_Confirmation(self.driver)
+        return checkout_confirmation
 

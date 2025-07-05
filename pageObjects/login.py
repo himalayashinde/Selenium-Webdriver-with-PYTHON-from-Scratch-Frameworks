@@ -1,14 +1,20 @@
 from selenium.webdriver.common.by import By
 
+from pageObjects.shop import ShopPage
+
 
 class LoginPage:
 
-    def __init__(self):
+    def __init__(self,driver):
+        self.driver = driver
         self.username_input= (By.ID, "username")
-
+        self.password = (By.ID, "password")
+        self.signInBtn = (By.ID, "signInBtn")
 
 
     def login(self):
-        driver.find_element(self.username_input).send_keys("rahulshettyacademy")
-        driver.find_element(By.ID, "password").send_keys("learning")
-        driver.find_element(By.ID, "signInBtn").click()
+        self.driver.find_element(*self.username_input).send_keys("rahulshettyacademy")
+        self.driver.find_element(*self.password).send_keys("learning")
+        self.driver.find_element(*self.signInBtn).click()
+        shop_page = ShopPage(self.driver)
+        return shop_page
