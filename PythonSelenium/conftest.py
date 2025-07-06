@@ -33,14 +33,17 @@ def browserInstance(request):
         options.add_argument("--incognito")
 
         driver = webdriver.Chrome(options=options)
-        driver.implicitly_wait(5)
-        yield driver
+        # driver.implicitly_wait(5)
+        # yield driver
     elif browser_name == "edge":
         driver = webdriver.Edge()
-        driver.implicitly_wait(5)
-        yield driver
+        # driver.implicitly_wait(5)
+        # yield driver
     else:
         driver = webdriver.Firefox()
-        driver.implicitly_wait(5)
-        yield driver    # Before Test function execution
-        driver.close()  # Post your function execution
+
+
+    driver.implicitly_wait(5)
+    driver.get("https://rahulshettyacademy.com/loginpagePractise/")
+    yield driver    # Before Test function execution
+    driver.close()  # Post your function execution

@@ -1,6 +1,9 @@
+import json
 import os.path
 import sys
 import time
+
+import pytest
 from selenium import webdriver
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from selenium.webdriver import ActionChains
@@ -10,18 +13,23 @@ from selenium.webdriver.support.wait import WebDriverWait
 from pageObjects.login import LoginPage
 from pageObjects.shop import ShopPage
 from pageObjects.checkout_confirmation import Checkout_Confirmation
+test_data_path="../data/test_e2eTestFramework.json"
+with open(test_data_path) as f:
+    test_data = json.load(f)
+    test_list= test_data["data"]
 
-def test_e2e(browserInstance):
+
+@pytest.mark.parametrize("test_list_item",test_list)
+def test_e2e(browserInstance, test_list_item):
     driver = browserInstance
 
     driver.maximize_window()
     # actions= ActionChains(driver)
-    driver.get("https://rahulshettyacademy.com/loginpagePractise/")
 
     loginPage = LoginPage(driver)
 
-    shop_page=loginPage.login()
-    shop_page.add_product_to_cart("Blackberry")
+    shop_page=loginPage.login(test_list_item["userEmail"],test_list_item["userPassword"])
+    shop_page.add_product_to_cart(test_list_item["productName"])
 
     checkout_confirmation = shop_page.goToCart()
     checkout_confirmation.checkout()
