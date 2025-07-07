@@ -2,7 +2,6 @@ import json
 import os.path
 import sys
 import time
-
 import pytest
 from selenium import webdriver
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -13,6 +12,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 from pageObjects.login import LoginPage
 from pageObjects.shop import ShopPage
 from pageObjects.checkout_confirmation import Checkout_Confirmation
+# pytest -m smoke  //tagging
+# pytest -n 10 // pytest-xdist plugin you need to run in parallel
+
+
 test_data_path="../data/test_e2eTestFramework.json"
 with open(test_data_path) as f:
     test_data = json.load(f)
@@ -27,11 +30,14 @@ def test_e2e(browserInstance, test_list_item):
     # actions= ActionChains(driver)
 
     loginPage = LoginPage(driver)
+    print(loginPage.getTitle())
 
     shop_page=loginPage.login(test_list_item["userEmail"],test_list_item["userPassword"])
+    print(shop_page.getTitle())
     shop_page.add_product_to_cart(test_list_item["productName"])
 
     checkout_confirmation = shop_page.goToCart()
+    print(checkout_confirmation.getTitle())
     checkout_confirmation.checkout()
     checkout_confirmation.enter_delivery_address("Ind")
     checkout_confirmation.validate_order()

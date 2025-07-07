@@ -2,11 +2,13 @@ from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 
 from pageObjects.checkout_confirmation import Checkout_Confirmation
+from utils.browserutils import BrowserUtils
 
 
-class ShopPage:
+class ShopPage(BrowserUtils):
 
     def __init__(self,driver):
+        super().__init__(driver)
         self.driver = driver
         self.shop_link= (By.LINK_TEXT, "Shop")
         self.actions = ActionChains(self.driver)
@@ -34,4 +36,7 @@ class ShopPage:
         # checkout.click()
         checkout_confirmation = Checkout_Confirmation(self.driver)
         return checkout_confirmation
+
+    # def getTitle(self):
+    #     return self.driver.title
 

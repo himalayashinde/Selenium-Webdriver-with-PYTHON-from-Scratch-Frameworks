@@ -3,9 +3,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 
+from utils.browserutils import BrowserUtils
 
-class Checkout_Confirmation:
+
+class Checkout_Confirmation(BrowserUtils):
     def __init__(self,driver):
+        super().__init__(driver)
         self.driver= driver
         self.actions = ActionChains(self.driver)
         self.checkout_button = (By.XPATH, "//button[contains(text(), 'Checkout')]")
